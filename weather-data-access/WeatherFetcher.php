@@ -5,10 +5,9 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
     die('This file cannot be accessed directly.');
 }
 
-// https://github.com/fawazahmed0/currency-api#readme
 class WeatherFetcher {
-    private $base_url = "https://api.open-meteo.com/v1/forecast?latitude=57.77&longitude=14.14&hourly=temperature_2m,weathercode&daily=weathercode";
-    // private $base_url = "https://dogapi.dog/api/v2/facts?limit=1";
+    private $base_url = "https://api.weatherbit.io/v2.0/current/&city=Raleigh,North+Carolina";
+
     
     // Fetches all available currencies from the API
     function fetchWeather(){

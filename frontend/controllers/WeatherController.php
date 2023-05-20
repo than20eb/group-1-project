@@ -8,13 +8,13 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
 require_once __DIR__ . "/../ControllerBase.php";
 require_once __DIR__ . "/../../business-logic/WeatherService.php";
 
-class ArticleController extends ControllerBase
+class WeatherController extends ControllerBase
 {
 
     public function handleRequest()
     {
         $this->model["weather"] = WeatherService::getWeather();
         var_dump($this->model["weather"]);
-        $this->viewPage("articles");
+        $this->viewPage("Weather");
     }
 }
