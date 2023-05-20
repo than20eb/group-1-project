@@ -6,8 +6,7 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
 }
 
 class WeatherFetcher {
-    private $base_url = "https://api.weatherbit.io/v2.0/current/&city=Raleigh,North+Carolina";
-
+    private $base_url = "https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=c4480acb63424d30b57b0b1bac996f53&include=minutely";
     
     // Fetches all available currencies from the API
     function fetchWeather(){
