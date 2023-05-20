@@ -7,8 +7,8 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
 
 // https://github.com/fawazahmed0/currency-api#readme
 class WeatherFetcher {
-    // private $base_url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m";
-    private $base_url = "https://dogapi.dog/api/v2/facts?limit=1";
+    private $base_url = "https://api.open-meteo.com/v1/forecast?latitude=57.77&longitude=14.14&hourly=temperature_2m,weathercode&daily=weathercode";
+    // private $base_url = "https://dogapi.dog/api/v2/facts?limit=1";
     
     // Fetches all available currencies from the API
     function fetchWeather(){
