@@ -5,6 +5,7 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
     die('This file cannot be accessed directly.');
 }
 
+
 require_once __DIR__ . "/AuthAPI.php";
 require_once __DIR__ . "/APIRoot.php";
 
@@ -24,8 +25,8 @@ class APIRouter
             // Whenever someone calls "api/purchases" we 
             // will load the PurchasesAPI class
             "auth" => "AuthAPI",
-            // "purchases" => "PurchasesAPI",
-            "root" => "APIRoot"
+            "root" => "APIRoot",
+            "users" => "UsersAPI",
         ];
 
         $this->path_parts = $path_parts;

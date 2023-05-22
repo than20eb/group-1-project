@@ -37,7 +37,7 @@ class UsersService
         return $users;
     }
 
-    public static function updateUser($user_id, UserModel $user)
+    public static function updatePassword($user_id, UserModel $user)
     {
         $users_database = new UsersDatabase();
 
@@ -45,5 +45,30 @@ class UsersService
 
         return $success;
     }
+
+    public static function premiumUser($user_id, UserModel $user)
+    {
+        $users_database = new UsersDatabase();
+
+        $success = $users_database->updateById($user_id, $user);
+
+        return $success;
+    }
+
+
+    public static function deleteUserById($user_id){
+        $users_database = new UsersDatabase();
+
+        // If you need to validate data or control what 
+        // gets deleted from the database you can do that here.
+        // This makes sure all input from any presentation
+        // layer will be validated and handled the same way.
+
+        $success = $users_database->deleteById($user_id);
+
+        return $success;
+    }
+
+
 
 }

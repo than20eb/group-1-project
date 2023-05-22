@@ -22,7 +22,6 @@ class AuthController extends ControllerBase
         }
 
 
-
         // GET: /home/auth/login
         if ($this->path_count == 3 && $this->path_parts[2] == "login") {
             $this->showLoginForm();
@@ -82,6 +81,15 @@ class AuthController extends ControllerBase
         else if ($this->path_count == 3 && $this->path_parts[2] == "logout") {
             $this->logoutUser();
         }
+
+        else if ($this->path_count == 3 && $this->path_parts[2] == "update") {
+            $this->updateUser();
+        }
+        // else if ($this->path_count == 3 && $this->path_parts[2] == "premium") {
+        //     $this->premiumUser();
+        // }
+
+
 
         // Show "404 not found" if the path is invalid
         else {
@@ -145,5 +153,35 @@ class AuthController extends ControllerBase
         session_destroy();
 
         $this->redirect($this->home . "/auth/login");
+    }
+
+    private function updateUser()
+    {
+        $user = new UserModel();
+
+        $user->premium = 0; // hard code all new users to regular "user" role
+        $password = $this->body["password"];
+        $confirm_password = $this->body["confirm_password"];
+
+        if ($password !== $confirm_password) {
+            $this->model["error"] == "Passwords don't match";
+            $this->viewPage("auth/update");
+        }
+
+        $existing_user = UsersService::getUserByUsername($user->username);
+
+        if ($existing_user) {
+            $this->model["error"] == "Username already in use";
+            $this->viewPage("auth/update");
+        }
+
+        $success = AuthService::updatePassword($user, $password);
+
+        if ($success) {
+            $this->redirect($this->home . "/auth/update");
+        } else {
+            $this->model["error"] == "Error registering user";
+            $this->viewPage("auth/update");
+        }
     }
 }
