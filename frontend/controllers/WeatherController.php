@@ -14,7 +14,6 @@ class WeatherController extends ControllerBase
     public function handleRequest()
     {
         $this->model["weather"] = WeatherService::getWeather();
-        var_dump($this->model["weather"]);
         $this->viewPage("Weather");
     }
 }

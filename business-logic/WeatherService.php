@@ -12,9 +12,7 @@ class WeatherService{
     // Fetches all available currencies from the API
     public static function getWeather(){
         $weather_fetcher = new WeatherFetcher();
-
         $weather = $weather_fetcher->fetchWeather();
-        var_dump($weather);
         return $weather;
         
     }
