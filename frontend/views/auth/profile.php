@@ -18,15 +18,14 @@ Template::header("Profile");
 
 
 
-<form action="<?= $this->home ?>/auth/update" method="post">
-    <input type="password" name="password" placeholder="Password"> <br>
-    <input type="password" name="confirm_password" placeholder="Confirm password"> <br>
-    <input type="submit" value="Update Password" class="btn">
-</form>
-
+<h2>Profile Settings</h2>
 <form action="<?= $this->home ?>/auth/logout" method="post">
     <input type="submit" value="Log out" class="btn delete-btn">
 </form>
 
+
+<form action="<?= $this->home ?>/auth/delete" method="post">
+    <input type="submit" value="Delete" class="btn delete-btn">
+</form>
 
 <?php Template::footer(); ?>
