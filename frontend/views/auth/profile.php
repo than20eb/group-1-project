@@ -14,9 +14,14 @@ Template::header("Profile");
 
 
 
-<h2>Log out</h2>
+<h2>Profile Settings</h2>
 <form action="<?= $this->home ?>/auth/logout" method="post">
     <input type="submit" value="Log out" class="btn delete-btn">
+</form>
+
+
+<form action="<?= $this->home ?>/auth/delete" method="post">
+    <input type="submit" value="Delete" class="btn delete-btn">
 </form>
 
 <?php Template::footer(); ?>
