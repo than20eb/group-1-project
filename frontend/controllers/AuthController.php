@@ -85,9 +85,9 @@ class AuthController extends ControllerBase
         else if ($this->path_count == 3 && $this->path_parts[2] == "update") {
             $this->updateUser();
         }
-        // else if ($this->path_count == 3 && $this->path_parts[2] == "premium") {
-        //     $this->premiumUser();
-        // }
+        else if ($this->path_count == 3 && $this->path_parts[2] == "premium") {
+            $this->premiumUser();
+        }
 
 
 
@@ -154,7 +154,20 @@ class AuthController extends ControllerBase
 
         $this->redirect($this->home . "/auth/login");
     }
+    private function premiumUser()
+    {
+        //!The API for patch is not integrated, what should be the code here?
+        $user = new UserModel();
+        if ($user) {
+            $user->premium = !$user->premium; // toggle the value
+        
+            //$success = AuthService::premiumUser($user);
 
+            return true; // successful update
+        }
+        
+        return false; // user not found
+    }
     private function updateUser()
     {
         $user = new UserModel();

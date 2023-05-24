@@ -79,6 +79,7 @@ class UsersAPI extends RestAPI
         }
     }
 
+
     // Gets the contents of the body and saves it as a user by 
     // inserting it in the database.
     private function postOne()
@@ -86,18 +87,20 @@ class UsersAPI extends RestAPI
         $user = new UserModel();
 
         $user->username = $this->body["username"];
-        $user->password_hash = $this->body["password"];
+        $user->password_hash = $this->body["password_hash"];
         $user->location = $this->body["location"];
         $user->premium = $this->body["premium"];
 
         $success = UsersService::saveUser($user);
 
-        if ($success) {
+        if($success){
             $this->created();
-        } else {
+        }
+        else{
             $this->error();
         }
     }
+
 
     // Gets the contents of the body and updates the user
     // by sending it to the DB
@@ -106,7 +109,7 @@ class UsersAPI extends RestAPI
         $user = new UserModel();
 
         $user->username = $this->body["username"];
-        $user->password_hash = $this->body["password"];
+        //$user->password_hash = $this->body["password_hash"];
         $user->location = $this->body["location"];
         $user->premium = $this->body["premium"];
 

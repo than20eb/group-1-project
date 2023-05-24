@@ -33,7 +33,7 @@ class ControllerBase
     {
         http_response_code($status);
 
-        // header("Content-Type: text/html;charset=UTF-8");
+        header("Content-Type: text/html;charset=UTF-8");
 
         require __DIR__ . "/views/" . $view . ".php";
 

@@ -8,6 +8,8 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
 
 require_once __DIR__ . "/AuthAPI.php";
 require_once __DIR__ . "/APIRoot.php";
+require_once __DIR__ . "/UsersAPI.php";
+
 
 // Class for routing all our API requests
 
@@ -26,7 +28,7 @@ class APIRouter
             // will load the PurchasesAPI class
             "auth" => "AuthAPI",
             "root" => "APIRoot",
-            "users" => "UsersAPI",
+            "users" => "UsersAPI"
         ];
 
         $this->path_parts = $path_parts;
