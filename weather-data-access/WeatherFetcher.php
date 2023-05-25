@@ -4,10 +4,17 @@
 if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     die('This file cannot be accessed directly.');
 }
+
+// Get city from input field in weather.php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Retrieve the city value from the form
+    $city = $_POST["city"];
+  }
+  
     class WeatherFetcher {
-        private $base_url = "https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=c4480acb63424d30b57b0b1bac996f53&include=minutely";
+        private $base_url = "https://api.weatherbit.io/v2.0/current?&city=Berlin&key=c4480acb63424d30b57b0b1bac996f53&include=minutely";
         
-        // Fetches weather data and returns HTML output
+        // Fetches weather data and returns HTML output 
         function fetchWeather() {
             // Construct the URL for the API request using the base URL
             $url = $this->base_url;
