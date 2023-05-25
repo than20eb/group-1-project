@@ -157,7 +157,6 @@ class AuthController extends ControllerBase
 
     private function premiumUser()
     {
-        //!The API for patch is not integrated, what should be the code here?
         $user = $_SESSION["user"];
         if ($this->user->premium === 0) {
             $user->premium = 1; // toggle the value
@@ -172,6 +171,8 @@ class AuthController extends ControllerBase
 
     private function locationUser()
     {
+        $user = $_SESSION["user"];
+        $user->location = $this->body["location"];
         $success = UsersService::locationUser($user);
         
         $this->redirect($this->home . "/auth/profile");
