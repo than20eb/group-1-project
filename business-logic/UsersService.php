@@ -36,6 +36,8 @@ class UsersService
 
         return $users;
     }
+
+
     // Save a user to the database by creating a database object from data-access layer and calling its insert function.
     public static function saveUser(UserModel $user){
         $users_database = new UsersDatabase();
@@ -87,7 +89,6 @@ class UsersService
         $success = $users_database->updateById($user->user_id, $user);
 
         // $success = $users_database->insert($user);
-
         return $success;
     }
 
@@ -108,3 +109,4 @@ class UsersService
 
 
 }
+
