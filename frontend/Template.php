@@ -28,7 +28,7 @@ class Template
 
             <nav>
                 <a href="<?= $home_path ?>">Start</a>
-                <a href="<?= $home_path ?>/articles">Weather</a>
+                <a href="<?= $home_path ?>/weather">Weather</a>
 
                 <?php if ($user) : ?>
                     <a href="<?= $home_path ?>/auth/profile">Profile</a>

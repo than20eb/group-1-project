@@ -12,14 +12,15 @@ class WeatherFetcher
     function fetchWeather()
     {
         // Get city from input field in weather.php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Retrieve the city value from the form
             $city = $_POST["city"];
-            var_dump($city);
             //var_dump($city);
-            $base_url = "https://api.weatherbit.io/v2.0/current?&city=Berlin&key=70fa35412ab94bae9af9274a9c2e3baf&include=minutely";
+            $base_url = "https://api.weatherbit.io/v2.0/current?&city=".$city."&key=70fa35412ab94bae9af9274a9c2e3baf&include=minutely";
         } else {
-            $base_url = "https://api.weatherbit.io/v2.0/current?&city=Basel&key=70fa35412ab94bae9af9274a9c2e3baf&include=minutely";
+            $user = $_SESSION["user"];
+            $user_location = $user->location;
+            $base_url = "https://api.weatherbit.io/v2.0/current?&city=".$user_location."&key=70fa35412ab94bae9af9274a9c2e3baf&include=minutely";
         }
 
         // Construct the URL for the API request using the base URL

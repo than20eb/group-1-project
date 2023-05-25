@@ -3,7 +3,7 @@ require_once __DIR__ . "/../Template.php";
 Template::header("Your Weather"); ?>
 
 
-<form method="POST">
+<form action="weather" method="POST">
   <input type="text" name="city" placeholder="Enter a city">
   <button type="submit">Weather for here</button>
 </form>
@@ -22,10 +22,3 @@ Template::header("Your Weather"); ?>
   </div>
 </div>
 <?php Template::footer(); ?>
-
-<?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $city = $_POST["city"];
-            var_dump($city);
-        }
-        ?>
