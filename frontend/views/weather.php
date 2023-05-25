@@ -11,7 +11,11 @@ Template::header("Your Weather"); ?>
 <div class="container">
   <h1>Weather Information</h1>
   <div class="weather-info">
-    <p>📍User Location: <?= $this->model["weather"] ?></p>
+  <p>📍User Location: <?= $this->model["weather"]["data"][0]["city_name"] ?></p>
+    <p>❄️Temperature: <?= $this->model["weather"]["data"][0]["temp"] ?></p>
+    <p>🌬️Wind Direction: <?= $this->model["weather"]["data"][0]["wind_cdir_full"] ?></p>
+    <p>🌪️Weather Speed: <?= $this->model["weather"]["data"][0]["wind_spd"] ?></p>
+    <p>🔭Weather Description: <?= $this->model["weather"]["data"][0]["weather"]["description"] ?></p>
     <?php
 
     ?>
