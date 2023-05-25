@@ -3,20 +3,22 @@ require_once __DIR__ . "/../../Template.php";
 
 Template::header("Profile");
 ?>
-
+<h2>Profile Settings</h2>
 <p>
-    Logged in as <b><?= $this->user->username ?></b>
+    Hello <b><?= $this->user->username ?>!</b>
 </p>
 
 <?php if ($this->user->premium === 1) : ?>
-    <p>(admin user)</p>
+    <p> Premium User Status</p>
+<?php else : ?>
+    <p> Would like to aquire Premium Status and save your location?</p>
 <?php endif; ?>
-
 <form action="<?= $this->home ?>/auth/premium" method="post">
-    <input type="submit" value="Update to Premium" class="btn">
+    <input class="btn" type="submit" value="Change Status" >
 </form>
 
 <?php if ($this->user->premium === 1) : ?>
+    Location: <b><?= $this->user->location ?></b>
     <form action="<?= $this->home ?>/auth/location" method="post">
         <input type="text" name="location" placeholder="Save your Location"> <br> 
         <input type="submit" value="Set Location" class="btn">
@@ -24,7 +26,7 @@ Template::header("Profile");
 <?php endif; ?>
 
 
-<h2>Profile Settings</h2>
+
 <form action="<?= $this->home ?>/auth/logout" method="post">
     <input type="submit" value="Log out" class="btn delete-btn">
 </form>
