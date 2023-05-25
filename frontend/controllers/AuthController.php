@@ -82,15 +82,15 @@ class AuthController extends ControllerBase
             $this->logoutUser();
         }
 
-        else if ($this->path_count == 3 && $this->path_parts[2] == "update") {
-            $this->updateUser();
-        }
+        // else if ($this->path_count == 3 && $this->path_parts[2] == "update") {
+        //     $this->updateUser();
+        // }
         else if ($this->path_count == 3 && $this->path_parts[2] == "premium") {
             $this->premiumUser();
         }
-
-
-
+        else if ($this->path_count == 3 && $this->path_parts[2] == "location") {
+            $this->locationUser();
+        }
         // Show "404 not found" if the path is invalid
         else {
             $this->notFound();
@@ -154,47 +154,67 @@ class AuthController extends ControllerBase
 
         $this->redirect($this->home . "/auth/login");
     }
+
     private function premiumUser()
     {
         //!The API for patch is not integrated, what should be the code here?
         $user = new UserModel();
-        if ($user) {
-            $user->premium = !$user->premium; // toggle the value
-        
-            //$success = AuthService::premiumUser($user);
-
-            return true; // successful update
+        if ($this->user->premium === 0) {
+            $user->premium = 1; // toggle the value
         }
+        else{
+            $user->premium = 0;
+        }
+            $success = UsersService::premiumUser();
         
-        return false; // user not found
     }
-    private function updateUser()
+
+    private function locationUser()
     {
         $user = new UserModel();
-
-        $user->premium = 0; // hard code all new users to regular "user" role
+        //! patch not update
+        $user->username = $this->body["username"];
+        $user->location = $this->body["location"];
+        $user->premium = 1; 
         $password = $this->body["password"];
-        $confirm_password = $this->body["confirm_password"];
 
-        if ($password !== $confirm_password) {
-            $this->model["error"] == "Passwords don't match";
-            $this->viewPage("auth/update");
-        }
 
-        $existing_user = UsersService::getUserByUsername($user->username);
-
-        if ($existing_user) {
-            $this->model["error"] == "Username already in use";
-            $this->viewPage("auth/update");
-        }
-
-        $success = AuthService::updatePassword($user, $password);
+        $success = UsersService::locationUser($user, $password);
 
         if ($success) {
-            $this->redirect($this->home . "/auth/update");
+            $this->redirect($this->home . "/auth/login");
         } else {
             $this->model["error"] == "Error registering user";
-            $this->viewPage("auth/update");
+            $this->viewPage("auth/register");
         }
     }
+    // private function updateUser()
+    // {
+    //     $user = new UserModel();
+
+    //     $user->premium = 0; // hard code all new users to regular "user" role
+    //     $password = $this->body["password"];
+    //     $confirm_password = $this->body["confirm_password"];
+
+    //     if ($password !== $confirm_password) {
+    //         $this->model["error"] == "Passwords don't match";
+    //         $this->viewPage("auth/update");
+    //     }
+
+    //     $existing_user = UsersService::getUserByUsername($user->username);
+
+    //     if ($existing_user) {
+    //         $this->model["error"] == "Username already in use";
+    //         $this->viewPage("auth/update");
+    //     }
+
+    //     $success = AuthService::updatePassword($user, $password);
+
+    //     if ($success) {
+    //         $this->redirect($this->home . "/auth/update");
+    //     } else {
+    //         $this->model["error"] == "Error registering user";
+    //         $this->viewPage("auth/update");
+    //     }
+    // }
 }

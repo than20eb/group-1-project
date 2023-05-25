@@ -75,7 +75,15 @@ class UsersService
     {
         $users_database = new UsersDatabase();
 
-        $success = $users_database->updateById($user_id, $user);
+        $success = $users_database->insert($user);
+
+        return $success;
+    }
+    public static function locationUser($user_id, UserModel $user)
+    {
+        $users_database = new UsersDatabase();
+
+        $success = $users_database->insert($user);
 
         return $success;
     }
