@@ -71,19 +71,22 @@ class UsersService
         return $success;
     }
 
-    public static function premiumUser($user_id, UserModel $user)
+    public static function premiumUser(UserModel $user)
     {
         $users_database = new UsersDatabase();
 
-        $success = $users_database->insert($user);
+        $success = $users_database->updateById($user->user_id, $user);
+        // $success = $users_database->insert($user_id, $user);
 
         return $success;
     }
-    public static function locationUser($user_id, UserModel $user)
+    public static function locationUser(UserModel $user)
     {
         $users_database = new UsersDatabase();
 
-        $success = $users_database->insert($user);
+        $success = $users_database->updateById($user->user_id, $user);
+
+        // $success = $users_database->insert($user);
 
         return $success;
     }

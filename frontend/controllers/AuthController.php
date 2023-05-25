@@ -158,35 +158,23 @@ class AuthController extends ControllerBase
     private function premiumUser()
     {
         //!The API for patch is not integrated, what should be the code here?
-        $user = new UserModel();
+        $user = $_SESSION["user"];
         if ($this->user->premium === 0) {
             $user->premium = 1; // toggle the value
         }
         else{
             $user->premium = 0;
         }
-            $success = UsersService::premiumUser();
+        $success = UsersService::premiumUser($user);
         
+        $this->redirect($this->home . "/auth/profile");
     }
 
     private function locationUser()
     {
-        $user = new UserModel();
-        //! patch not update
-        $user->username = $this->body["username"];
-        $user->location = $this->body["location"];
-        $user->premium = 1; 
-        $password = $this->body["password"];
-
-
-        $success = UsersService::locationUser($user, $password);
-
-        if ($success) {
-            $this->redirect($this->home . "/auth/login");
-        } else {
-            $this->model["error"] == "Error registering user";
-            $this->viewPage("auth/register");
-        }
+        $success = UsersService::locationUser($user);
+        
+        $this->redirect($this->home . "/auth/profile");
     }
     // private function updateUser()
     // {
