@@ -65,9 +65,6 @@ class Database
 
         return $result;
     }
-
-    // Deletes one row from the specified 
-    // table in the database.
     protected function deleteOneRowByIdFromTable($table_name, $id_name, $id)
     {
         // Variables inside the query are OK when the variables are not user input.
