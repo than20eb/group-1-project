@@ -12,6 +12,8 @@ class WeatherFetcher
     function fetchWeather()
     {
         // Get city from input field in weather.php
+        // Ideally this conditional rendering should not be here but in the presentation layer. This caused the problem to access the $base_url for file_get_contents which couldn't be resolved be requiring the source file.
+        // The base_url APIkey should be located and hid in confiq.php, similar to the JWT secret for publish reasons (on  Github).
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Retrieve the city value from the form
             $city = $_POST["city"];
