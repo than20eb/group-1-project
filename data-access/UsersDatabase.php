@@ -74,7 +74,6 @@ class UsersDatabase extends Database
 
         // Never send the password hash unless needed for authentication
         unset($user->password_hash);
-
         return $user;
     }
 
